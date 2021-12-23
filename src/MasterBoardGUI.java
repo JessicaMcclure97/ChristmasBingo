@@ -87,7 +87,20 @@ public class MasterBoardGUI {
         rollButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
                 int ballPicked = boardController.pickNumber();
-                ballPickedLabel.setText(" Ball Picked: " + ballPicked +" ");
+                char row = 'a';
+                if(ballPicked <  (maxNumber/5)+1 ){
+                    row = 'B';
+                }else if(ballPicked < ((maxNumber/5)*2 + 1) ){
+                    row = 'I';
+                }else if(ballPicked < ((maxNumber/5)*3 + 1) ){
+                    row = 'N';
+                }else if(ballPicked < ((maxNumber/5)*4 + 1) ){
+                    row = 'G';
+                }else{
+                    row = 'O';
+                }
+
+                ballPickedLabel.setText(" Ball Picked: " + row + ballPicked +" ");
             }
         });
 
