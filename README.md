@@ -3,7 +3,7 @@
 
 A Christmas bingo master board game. This is to be used along side a physical board and markers. The program can be run in two ways. 
 
-1. Default Way: This uses the shell script. This uses the default game size of 50 bingo balls. Run
+1. Default Way: This uses the shell script. This uses the default game size of 75 bingo balls. Run
       ./ChristmasBingo 
   
 2. Hardcode: This lets the user choose the game size. Compile the program from the src/ folder using the command 

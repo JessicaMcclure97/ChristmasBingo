@@ -2,4 +2,4 @@
 
 cd ./src/
 javac *.java
-java StartGame 50
+java StartGame 75
