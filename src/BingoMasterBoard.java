@@ -26,6 +26,7 @@ public class BingoMasterBoard {
         for(int i=0; i < maxNumber; i++){
             fullList.add(i+1); //since don't want 0
         }
+        System.out.println(fullList);
         //shuffle so we can pick a random ball at a single time
         shuffle(fullList);
     }

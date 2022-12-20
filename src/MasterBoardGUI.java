@@ -17,6 +17,7 @@ public class MasterBoardGUI {
     int maxNumber;
     BingoMasterBoard boardController;
     JPanel content;
+    RoundButton buttons[];
 
     MasterBoardGUI(int maxNumber){
         this.maxNumber = maxNumber;
@@ -99,8 +100,10 @@ public class MasterBoardGUI {
                 }else{
                     row = 'O';
                 }
-
+                //update text on what ball was picked 
                 ballPickedLabel.setText(" Ball Picked: " + row + ballPicked +" ");
+                //highlight specific ball 
+                buttons[ballPicked-1].doClick(); 
             }
         });
 
@@ -137,16 +140,23 @@ public class MasterBoardGUI {
         GridLayout layout = new GridLayout(5, 0,2,2);
         board.setLayout(layout);
 
+        //initialise buttons 
+        buttons = new RoundButton[maxNumber];
+
+        for (int i = 0; i < maxNumber; i++) {
+            buttons[i] = new RoundButton(String.valueOf(i+1));
+        }
+
         board.add(new RoundButton("<html> <b>B</b>"));
-        for(int i=0; i < maxNumber/5; i++) board.add(new RoundButton(String.valueOf(i+1)));
+        for(int i=0; i < maxNumber/5; i++) board.add(buttons[i]);
         board.add(new RoundButton("<html> <b>I</b>"));
-        for(int i=0; i < maxNumber/5; i++) board.add(new RoundButton(String.valueOf(i+(maxNumber/5)+1)));
+        for(int i=0; i < maxNumber/5; i++) board.add(buttons[i+(maxNumber/5)]);
         board.add(new RoundButton("<html> <b>N</b>"));
-        for(int i=0; i < maxNumber/5; i++) board.add(new RoundButton(String.valueOf(i+(maxNumber/5)*2+1)));
+        for(int i=0; i < maxNumber/5; i++) board.add(buttons[i+(maxNumber/5)*2]);
         board.add(new RoundButton("<html> <b>G</b>"));
-        for(int i=0; i < maxNumber/5; i++) board.add(new RoundButton(String.valueOf(i+(maxNumber/5)*3+1)));
+        for(int i=0; i < maxNumber/5; i++) board.add(buttons[i+(maxNumber/5)*3]);
         board.add(new RoundButton("<html> <b>O</b>"));
-        for(int i=0; i < maxNumber/5; i++) board.add(new RoundButton(String.valueOf(i+(maxNumber/5)*4+1)));
+        for(int i=0; i < maxNumber/5; i++) board.add(buttons[i+(maxNumber/5)*4]);
 
         displayPanel.add(board);
     }
