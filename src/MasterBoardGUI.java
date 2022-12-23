@@ -63,7 +63,9 @@ public class MasterBoardGUI {
 
             JLabel ballPickedLabel = new JLabel(" Roll to Start the Game! ", SwingConstants.CENTER);
             ballPickedLabel.setFont(new Font("Serif", Font.ITALIC, 60));
-            ballPickedLabel.setForeground(new Color(22, 88, 0));
+            ballPickedLabel.setForeground(new Color(1, 50, 32));
+            ballPickedLabel.setOpaque(true);
+            ballPickedLabel.setBackground(new Color(251, 172, 1));
 
         directionsPanel.add(ballPickedLabel);
 
@@ -88,20 +90,9 @@ public class MasterBoardGUI {
         rollButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
                 int ballPicked = boardController.pickNumber();
-                char row = 'a';
-                if(ballPicked <  (maxNumber/5)+1 ){
-                    row = 'B';
-                }else if(ballPicked < ((maxNumber/5)*2 + 1) ){
-                    row = 'I';
-                }else if(ballPicked < ((maxNumber/5)*3 + 1) ){
-                    row = 'N';
-                }else if(ballPicked < ((maxNumber/5)*4 + 1) ){
-                    row = 'G';
-                }else{
-                    row = 'O';
-                }
+                
                 //update text on what ball was picked 
-                ballPickedLabel.setText(" Ball Picked: " + row + ballPicked +" ");
+                ballPickedLabel.setText(" Ball Picked: " + ballPicked +" ");
                 //highlight specific ball 
                 buttons[ballPicked-1].doClick(); 
             }
@@ -137,7 +128,7 @@ public class MasterBoardGUI {
         board.setBackground(new Color( 23, 88, 0));
         //board.setSize(300,300);
 
-        GridLayout layout = new GridLayout(5, 0,2,2);
+        GridLayout layout = new GridLayout(maxNumber/10, 0,2,2);
         board.setLayout(layout);
 
         //initialise buttons 
@@ -146,18 +137,8 @@ public class MasterBoardGUI {
         for (int i = 0; i < maxNumber; i++) {
             buttons[i] = new RoundButton(String.valueOf(i+1));
         }
-
-        board.add(new RoundButton("<html> <b>B</b>"));
-        for(int i=0; i < maxNumber/5; i++) board.add(buttons[i]);
-        board.add(new RoundButton("<html> <b>I</b>"));
-        for(int i=0; i < maxNumber/5; i++) board.add(buttons[i+(maxNumber/5)]);
-        board.add(new RoundButton("<html> <b>N</b>"));
-        for(int i=0; i < maxNumber/5; i++) board.add(buttons[i+(maxNumber/5)*2]);
-        board.add(new RoundButton("<html> <b>G</b>"));
-        for(int i=0; i < maxNumber/5; i++) board.add(buttons[i+(maxNumber/5)*3]);
-        board.add(new RoundButton("<html> <b>O</b>"));
-        for(int i=0; i < maxNumber/5; i++) board.add(buttons[i+(maxNumber/5)*4]);
-
+        for(int i = 0; i < maxNumber; i++)  board.add(buttons[i]); 
+        
         displayPanel.add(board);
     }
 }
