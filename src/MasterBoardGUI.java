@@ -15,12 +15,14 @@ public class MasterBoardGUI {
     JPanel displayPanel;
 
     int maxNumber;
+    String bingoCalls[];
     BingoMasterBoard boardController;
     JPanel content;
     RoundButton buttons[];
 
-    MasterBoardGUI(int maxNumber){
+    MasterBoardGUI(int maxNumber, String[] bingoCalls){
         this.maxNumber = maxNumber;
+        this.bingoCalls = bingoCalls;
         boardController = new BingoMasterBoard(maxNumber);
 
         frame = new JFrame();
@@ -92,7 +94,7 @@ public class MasterBoardGUI {
                 int ballPicked = boardController.pickNumber();
                 
                 //update text on what ball was picked 
-                ballPickedLabel.setText(" Ball Picked: " + ballPicked +" ");
+                ballPickedLabel.setText("<html><center> Ball Picked: " + ballPicked +" <br> "+bingoCalls[ballPicked-1]+"</html> ");
                 //highlight specific ball 
                 buttons[ballPicked-1].doClick(); 
             }
@@ -104,7 +106,7 @@ public class MasterBoardGUI {
         resetButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
                 frame.setVisible(false);
-                new MasterBoardGUI(maxNumber);
+                new MasterBoardGUI(maxNumber, bingoCalls);
             }
         });
 
